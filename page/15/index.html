@@ -50,7 +50,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2022-06-16 00:25:00'
+  postUpdate: '2022-06-16 00:26:20'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -145,21 +145,29 @@
 
 本节内容：
 
+
 指针的简单引入
+
 
 [What] 指针是什么
 
+
 [Why] 为什么要用指针
+
 
 [How] 指针怎么玩（声明，使用，运算，数组指针，结构体指针，函数指针）
 
 
 
+
 函数传参的几种方式
+
 
 值传递
 
+
 地址传递
+
 
 引用传递
 
@@ -167,14 +175,17 @@
 
 
 指针的简单引入
-指针是什么首先，我们要清楚指针是什么，下面是指针的原始定义
+
+指针是什么
+首先，我们要清楚指针是什么，下面是指针的原始定义
 
 系统在内存中，为变量（本人按：这里应加上函数）分配存储空间的首个字节单元的地址，称之为该变量的地址。地址用来标识每一个存储单元，方便用户对存储单元中的数据进行正确的访问。在高级语言中地址形象地称为指针。
 
 指针变量就是保存指针的变量，但很多人 将「指针变量」简称为「指针」，故本文的指针都是指针变量的意思
 下面要认两个重要概念：指针的值和类型
 「指针的值」 内存地址一般用十六进制数表示，故 指针的值就是一个十六进制数
-「指针的类型」 指针不仅是一个地址那么简单，对象不同则类型不同，如指向 int类型 的指针就称这个指针是 int 型的，int 型指针就只能存 in ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/02/20/shu-mei-pai-ru-he-yi-zheng-que-de-zi-shi-zhi-zuo-shu-mei-pai-de-tf-qia-shu-ju-jing-xiang/" title="『树莓派』如何以正确的姿势制作树莓派的TF卡数据镜像">『树莓派』如何以正确的姿势制作树莓派的TF卡数据镜像</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-02-20T05:43:26.000Z" title="发表于 2020-02-20 13:43:26">2020-02-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a></span></div><div class="content">准备：
+「指针的类型」 指针不仅是一个地址那么简单，对象不同则类型不同，如指向 int类型 的指针就称这个指针是 int 型的，int  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/02/20/shu-mei-pai-ru-he-yi-zheng-que-de-zi-shi-zhi-zuo-shu-mei-pai-de-tf-qia-shu-ju-jing-xiang/" title="『树莓派』如何以正确的姿势制作树莓派的TF卡数据镜像">『树莓派』如何以正确的姿势制作树莓派的TF卡数据镜像</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-02-20T05:43:26.000Z" title="发表于 2020-02-20 13:43:26">2020-02-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a></span></div><div class="content">准备：
+
 Windows环境（Linux的自己安装GParted即可）
 VM或VMplayer环境
 GParted的iso镜像 和 Win32DiskImager
@@ -182,7 +193,8 @@ GParted的iso镜像 和 Win32DiskImager
 
 没有VM或GParted或Win32DiskImager可以在这里（密码：61oq）下载
 （百度云盘下载慢的自行用pandownload）
-教程：先安装好所有软件，在此不再繁述
+教程：
+先安装好所有软件，在此不再繁述
 打开VM（此处以VMplayer演示，大同小异）
 选择“创建新虚拟机”
 安装来源选择GParted的iso镜像
@@ -192,6 +204,7 @@ GParted的iso镜像 和 Win32DiskImager
 名称随便填
 
 硬盘其实可以没有，因为是从iso直接启动系统，但是硬要填的话就填个最小值好了
+
 
 内存其实100M即可，默认256M也无妨
 
@@ -208,80 +221,104 @@ GParted的iso镜像 和 Win32DiskImager
 
 在选项卡中选择你的TF卡
 
-右键-&gt;更改大小&#x2F;移动
+右键-&gt;更改大小/移动
 
 把区间右端点（数学乱入）尽量往左移动，把空白区域压掉
 
- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/01/26/shu-mei-pai-minecraft-chao-chang-kai-fu-zhe-teng-ji-lu-javaji-yan-with-hong-shi/" title="『树莓派』Minecraft超长开服折腾记录（Java+基岩with红石）">『树莓派』Minecraft超长开服折腾记录（Java+基岩with红石）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-01-26T13:54:52.000Z" title="发表于 2020-01-26 21:54:52">2020-01-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a></span></div><div class="content">【原创】树莓派Minecraft超长开服折腾记录（Java版+基岩版 with 红石）更新：现在基岩版服务器最佳方案是Java+Geyser我去……这他妈的终于成功了
+之后 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2020/01/26/shu-mei-pai-minecraft-chao-chang-kai-fu-zhe-teng-ji-lu-javaji-yan-with-hong-shi/" title="『树莓派』Minecraft超长开服折腾记录（Java+基岩with红石）">『树莓派』Minecraft超长开服折腾记录（Java+基岩with红石）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-01-26T13:54:52.000Z" title="发表于 2020-01-26 21:54:52">2020-01-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a></span></div><div class="content">【原创】树莓派Minecraft超长开服折腾记录（Java版+基岩版 with 红石）
+更新：现在基岩版服务器最佳方案是Java+Geyser
+我去…这他妈的终于成功了
 折腾时长长达半年啊，从学期初到末再到放寒假再到春节，今天可是大年初二
 本教程制作匆忙，很多东西都是点到为止，而且也没有什么图片（以后可能会配图），也肯定会有纰漏或者错误，请多多包涵
 目录：
 
+
 Java版篇
+
 
 基岩版篇（Nukkit(X)，Pocketmine-MP，官方服务端）
 
 
 好了，废话不多说，开始
 1mkdir minecraft &amp;&amp; cd minecraft
-
-Java版篇Java极其简单，且容易地可跨平台，但与基岩版相比代码效率更低
+Java版篇
+Java极其简单，且容易地可跨平台，但与基岩版相比代码效率更低
 1mkdir Java &amp;&amp; cd Java
-
-1.搭建Java环境1sudo apt install default-jdk
+1.搭建Java环境
+1sudo apt install default-jdk
 不行就百度，再不行就谷歌，这篇或许有帮助
-2.下载服务器jar这里有多种选择，可以官方下载
+2.下载服务器jar
+这里有多种选择，可以官方下载
 也可以通过Paper或者spigot获得对应的版本，基本上是一样的，但据说spigot的效率更高一些
-这里下载目前最新官方jar ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/07/31/kao-shi-zong-jie-190731/" title="『考试总结』190731">『考试总结』190731</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-07-31T12:34:15.000Z" title="发表于 2019-07-31 20:34:15">2019-07-31</time></span></div><div class="content">试题：CZYZ2017 夏令营 NOIP 模拟赛（提高组） 2017 年 8 月 4 日得分：40&#x2F;300（不想说话了）T1:传送带（10分）这题要用三分，但是我们没有学过，我考试的时候也没有想出其他方法，只考虑了特殊情况
+这里下载目前最新官 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/07/31/kao-shi-zong-jie-190731/" title="『考试总结』190731">『考试总结』190731</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-07-31T12:34:15.000Z" title="发表于 2019-07-31 20:34:15">2019-07-31</time></span></div><div class="content">试题：CZYZ2017 夏令营 NOIP 模拟赛（提高组） 2017 年 8 月 4 日
+得分：40/300（不想说话了）
+T1:传送带（10分）
+这题要用三分，但是我们没有学过，我考试的时候也没有想出其他方法，只考虑了特殊情况
 较好的题解
-T2:疯狂的火神（0分）这道题用数学推关系，考场直接暴搜但是居然没有拿分，肯定有地方错了
+T2:疯狂的火神（0分）
+这道题用数学推关系，考场直接暴搜但是居然没有拿分，肯定有地方错了
 菜就是菜啊。。。以后考场也要试着去推关系，另外，背包差不多被我忘光了
-T3：火神的鱼(30分）线段树
+T3：火神的鱼(30分）
+线段树
 但是我一开始没有注意鱼只会往x与y的正方向游，所以不会打线段树，只好暴搜，30分
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/07/23/suan-fa-zong-jie-ou-ji-li-de-suan-fa-ji-tuo-zhan/" title="『算法』总结欧几里得算法及拓展">『算法』总结欧几里得算法及拓展</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-07-23T03:42:30.000Z" title="发表于 2019-07-23 11:42:30">2019-07-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></span></div><div class="content">真TMD难啊！！！！我真的想*欧几里得好吧难还是得学啊。。。9九月就初赛
-①欧几里得算法这东西很简单啊。。就记个结论就可以了
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/07/23/suan-fa-zong-jie-ou-ji-li-de-suan-fa-ji-tuo-zhan/" title="『算法』总结欧几里得算法及拓展">『算法』总结欧几里得算法及拓展</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-07-23T03:42:30.000Z" title="发表于 2019-07-23 11:42:30">2019-07-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></span></div><div class="content">真TMD难啊！！！！我真的想*欧几里得
+好吧难还是得学啊。。。9九月就初赛
+①欧几里得算法
+这东西很简单啊。。就记个结论就可以了
 1gcd(a,b)=gcd(b,a%b)
 然后就没有了
-②欧几里得算法的应用这东西就是用来求最大公约数的
+②欧几里得算法的应用
+这东西就是用来求最大公约数的
 1234int gcd(int a,int b)&#123;    return b?gcd(b,a%b):a;&#125;
-
 接下来的才是难点
-③欧几里得算法拓展欧几里得算法拓展用于求
-$$\text{ax}{+ by} &#x3D; \gcd\left( a,b \right)$$
+③欧几里得算法拓展
+欧几里得算法拓展用于求
+ax+by=gcd⁡(a,b)\text{ax}{+ by} = \gcd\left( a,b \right)
+ax+by=gcd(a,b)
 的其中一组解
 具体过程如下：
-$$ \text{\ ax}{1}{+ by}{1} &#x3D; \gcd\left( a,b \right)$$
+ ax1+by1=gcd⁡(a,b)\text{\ ax}_{1}{+ by}_{1} = \gcd\left( a,b \right)
+ ax1​+by1​=gcd(a,b)
 利用欧几里得公式
-$$&#x3D; &gt; \text{bx}{2}{+ (a% b)y}{2} &#x3D; \gcd\left( b,a% b \right)$$
-可以重复利用欧几里得公式，到最后一层b会变成0
-$$&#x3D; &gt; (\ldots)x_{i} + (\ldots)y_{i}\  &#x3D; \gcd ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/07/17/suan-fa-zong-jie-qu-jian-cao-zuo/" title="『算法』总结区间操作">『算法』总结区间操作</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-07-17T04:35:01.000Z" title="发表于 2019-07-17 12:35:01">2019-07-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></span></div><div class="content">差分数组例题：P1083 借教室12345678910111213141516171819202122232425262728293031323334#include&lt;bits/stdc++.h&gt;using namespace std;const int INF = 0x3f3f3f3f;int a[1000000],b[1000000],c[1000000],d[1000000],x[1000000],y[1000000],n,m;bool check(int k)&#123;	memset(b, 0, sizeof(b));	for (int i = 1; i &lt;= k; i++)	&#123;		b[x[i]] += d[i];		b[y[i]+1] -= d[i];	&#125;	for (int i = 1; i &lt;= n; i++)	&#123;		c[i] = c[i - 1] + b[i];		if (c[i] &gt; a[i])return 0;	&#125;	return 1;&#125;int main()&#123;	scanf(&qu ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/07/15/suan-fa-zong-jie-kmp-suan-fa/" title="『算法』总结KMP算法">『算法』总结KMP算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-07-15T12:52:08.000Z" title="发表于 2019-07-15 20:52:08">2019-07-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></span></div><div class="content">【字符串】总结KMP算法buildtime:2019年7月15日KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt提出的，因此人们称它为克努特—莫里斯—普拉特操作（简称KMP算法）。KMP算法的关键是利用匹配失败后的信息，尽量减少模式串与主串的匹配次数以达到快速匹配的目的。具体实现就是实现一个next()函数，函数本身包含了模式串的局部匹配信息。时间复杂度O(m+n)。
+=&gt;bx2+(a%b)y2=gcd⁡(b,a%b)= &gt; \text{bx}_{2}{+ (a\% b)y}_{2} = \gcd\left( b,a\% b \right)
+=&gt;bx2​ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/07/17/suan-fa-zong-jie-qu-jian-cao-zuo/" title="『算法』总结区间操作">『算法』总结区间操作</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-07-17T04:35:01.000Z" title="发表于 2019-07-17 12:35:01">2019-07-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></span></div><div class="content">差分数组例题：P1083 借教室
+12345678910111213141516171819202122232425262728293031323334#include&lt;bits/stdc++.h&gt;using namespace std;const int INF = 0x3f3f3f3f;int a[1000000],b[1000000],c[1000000],d[1000000],x[1000000],y[1000000],n,m;bool check(int k)&#123;	memset(b, 0, sizeof(b));	for (int i = 1; i &lt;= k; i++)	&#123;		b[x[i]] += d[i];		b[y[i]+1] -= d[i];	&#125;	for (int i = 1; i &lt;= n; i++)	&#123;		c[i] = c[i - 1] + b[i];		if (c[i] &gt; a[i])return 0;	&#125;	return 1;&#125;int main()&#123;	scanf(&q ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/07/15/suan-fa-zong-jie-kmp-suan-fa/" title="『算法』总结KMP算法">『算法』总结KMP算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-07-15T12:52:08.000Z" title="发表于 2019-07-15 20:52:08">2019-07-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a></span></div><div class="content">【字符串】总结KMP算法
+buildtime:2019年7月15日
+KMP算法是一种改进的字符串匹配算法，由D.E.Knuth，J.H.Morris和V.R.Pratt提出的，因此人们称它为克努特—莫里斯—普拉特操作（简称KMP算法）。KMP算法的关键是利用匹配失败后的信息，尽量减少模式串与主串的匹配次数以达到快速匹配的目的。具体实现就是实现一个next()函数，函数本身包含了模式串的局部匹配信息。时间复杂度O(m+n)。
 先放两篇比较好的资料:
 从头到尾彻底理解KMP（2014年8月22日版）
 [KMP算法]NEXT数列手算演示
 KMP的算法流程：
 假设现在文本串S匹配到 i 位置，模式串P匹配到 j 位置
 
-如果j &#x3D; -1，或者当前字符匹配成功（即S[i] &#x3D;&#x3D; P[j]），都令i++，j++，继续匹配下一个字符；
-如果j !&#x3D; -1，且当前字符匹配失败（即S[i] !&#x3D; P[j]），则令 i 不变，j &#x3D; next[j]。此举意味着失配时，模式串P相对于文本串S向右移动了j - next [j] 位。
+如果j = -1，或者当前字符匹配成功（即S[i] == P[j]），都令i++，j++，继续匹配下一个字符；
+如果j != -1，且当前字符匹配失败（即S[i] != P[j]），则令 i 不变，j = next[j]。此举意味着失配时，模式串P相对于文本串S向右移动了j - next [j] 位。
 
-换言之，当匹配失败 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/07/10/shu-mei-pai-da-jian-si-you-yun-fu-wu-qi-nextcloud/" title="『树莓派』搭建私有云服务器（Nextcloud）">『树莓派』搭建私有云服务器（Nextcloud）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-07-10T13:00:26.000Z" title="发表于 2019-07-10 21:00:26">2019-07-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a></span></div><div class="content">【整理】树莓派搭建私有云服务器（Nextcloud）buildtime:2019年7月10日
-刚刚考完期末考，真的是累死。这个项目其实我去年就做过，现在想重新总结一下。$\colorbox{purple}{\color{white}{\text{最详细也最正式地}}}$ 教授大家如何实现这个项目。
+换言之，当匹配失败时，模式串向右移动的位数为：失配字符所在位置 - 失配字 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/07/10/shu-mei-pai-da-jian-si-you-yun-fu-wu-qi-nextcloud/" title="『树莓派』搭建私有云服务器（Nextcloud）">『树莓派』搭建私有云服务器（Nextcloud）</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-07-10T13:00:26.000Z" title="发表于 2019-07-10 21:00:26">2019-07-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a></span></div><div class="content">【整理】树莓派搭建私有云服务器（Nextcloud）
+buildtime:2019年7月10日
+
+刚刚考完期末考，真的是累死。这个项目其实我去年就做过，现在想重新总结一下。最详细也最正式地\colorbox{purple}{\color{white}{\text{最详细也最正式地}}}最详细也最正式地​ 教授大家如何实现这个项目。
 我的配置
+
 树莓派3A+一块
 聪明的脑子一个
 
 树莓派其实可以使用其他任意版本（zerow也可以，虽然很卡但是仍可以正常使用）
 请事先调试好你的树莓派确保能正常上网和连接，如有异议请点击这里入门
-好的我们开始！Step0：基础知识首先你需要有一个总体的概念才能一步步完成这个项目
+好的我们开始！
+Step0：基础知识
+首先你需要有一个总体的概念才能一步步完成这个项目
 好的，首先，我们要搭建一个私有云服务器
 私有云服务器说白了就是运行私有云的一个网站服务器
-要搭建一个网站，就不得不提一个词：$\colorbox{purple}{\color{white}{\text{LAMP}}}$ 
-何为$\colorbox{purple}{\color{white}{\text{LAMP}}}$ ？
+要搭建一个网站，就不得不提一个词：LAMP\colorbox{purple}{\color{white}{\text{LAMP}}}LAMP​
+何为LAMP\colorbox{purple}{\color{white}{\text{LAMP}}}LAMP​ ？
 这里引用百度百科：
-$\colorbox{brown}{\color{white}{\text{ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/07/06/shu-mei-pai-wifi-xin-hao-zhong-ji/" title="『树莓派』WiFi信号中继">『树莓派』WiFi信号中继</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-07-06T15:09:20.000Z" title="发表于 2019-07-06 23:09:20">2019-07-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a></span></div><div class="content">
-首先要先感谢树莓派实验室创客群-G的大佬：【管理员】辣鸡管理话说我家的WiFi信号有些差劲，就想用树莓派中继一下，弄了一晚上之后成功，特此记录。
+LAMP是 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/07/06/shu-mei-pai-wifi-xin-hao-zhong-ji/" title="『树莓派』WiFi信号中继">『树莓派』WiFi信号中继</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-07-06T15:09:20.000Z" title="发表于 2019-07-06 23:09:20">2019-07-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a></span></div><div class="content">
+首先要先感谢树莓派实验室创客群-G的大佬：【管理员】辣鸡管理
+话说我家的WiFi信号有些差劲，就想用树莓派中继一下，弄了一晚上之后成功，特此记录。
 
 我的配置：
+
 树莓派3A+一块
 USB无线网卡一个（建议选择大功率的，我做出来网速就很慢）
 
@@ -289,29 +326,37 @@ USB无线网卡一个（建议选择大功率的，我做出来网速就很慢�
 之所以要用USB网卡是因为中继需要两张无线网卡：一张连接网络，一张开AP。
 如果你想用网线开热点的话，就不要理这个，把下面的“连接到网络的网卡”改成eth0即可
 请事先调试好你的树莓派确保能正常上网和连接，如有异议请点击这里入门
-好的我们开始！Step1：插上USB网卡插上后要检查一下有没有被识别，一般都能够别识别的键入命令以查看网络情况：
+好的我们开始！
+Step1：插上USB网卡
+插上后要检查一下有没有被识别，一般都能够别识别的
+键入命令以查看网络情况：
 1ifconfig
 之后应该有两张无线网卡：wlan0和wlan1，如图：
 
 如果没有找到两张网卡，就是没有被识别，可以自行百度树莓派识别USB网卡
-Step2：安装create_apcreate_ap是GitHub上一个开源项目，专门用于开热点
-1234567#把这个项目Git下来并安装sudo git clone https://g ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/05/30/ti-jie-p1403-ahoi2005yue-shu-yan-jiu/" title="『题解』 P1403 【[AHOI2005]约数研究】">『题解』 P1403 【[AHOI2005]约数研究】</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-05-30T10:17:37.000Z" title="发表于 2019-05-30 18:17:37">2019-05-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a></span></div><div class="content">某有银用DP吗？？？其实这道题用来学习DP（动态规划）也挺好的先创个数组a[i]用于存储每个数的约数
+Step2：安装create_ap
+create_ap是GitHub上一个开源项目，专门用于开热点
+1234567#把这个项目Git下来并安装sudo git clone htt ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2019/05/30/ti-jie-p1403-ahoi2005yue-shu-yan-jiu/" title="『题解』 P1403 【[AHOI2005]约数研究】">『题解』 P1403 【[AHOI2005]约数研究】</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2019-05-30T10:17:37.000Z" title="发表于 2019-05-30 18:17:37">2019-05-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%A2%98%E8%A7%A3/">题解</a></span></div><div class="content">某有银用DP吗？？？
+其实这道题用来学习DP（动态规划）也挺好的
+先创个数组a[i]用于存储每个数的约数
 1int a[1000000];
 再将i从1枚举到n
 1for(int i=1;i&lt;=n;i++)
-而且，可以从i的枚举i的倍数，且i绝对为i的倍数的约数So。。。可设个变量j获得i的j倍
-而且向前填数组的时候要注意i*j&lt;&#x3D;n即可
+而且，可以从i的枚举i的倍数，且i绝对为i的倍数的约数
+So。。。可设个变量j获得i的j倍
+而且向前填数组的时候要注意i*j&lt;=n即可
 最后，1也算约数，所以a[i]++;
 代码奉上
-12345678910111213141516171819#include&lt;bits/stdc++.h&gt;using namespace std;int a[1000000],n,sum;int main()&#123;	cin&gt;&gt;n;	for(int i=1;i&lt;=n;i++)	&#123;		int j=2;		while(j*i&lt;=n)		&#123;			a[j*i]++;			j++;		&#125;		a[i]++;	&#125;	for(int i=1;i&lt;=n;i++)sum+=a[i];	cout&lt;&lt;sum;&#125 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/14/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/#content-inner">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/#content-inner">16</a><a class="extend next" rel="next" href="/page/16/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/static/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nick Xu</div><div class="author-info__description">折腾就是快乐</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">注意：因为 jsDelivrCND 在国内寄了，故在本站在国内无法正常显示，鄙人最近一段时间很忙，只有等有空的时候再修了</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/14/%E3%80%8E%E9%9A%8F%E7%AC%94%E3%80%8F618%E6%A1%8C%E9%9D%A2%E6%94%B9%E9%80%A0%E8%AE%A1%E5%88%92/" title="『随笔』618桌面改造计划">『随笔』618桌面改造计划</a><time datetime="2022-06-14T10:56:50.000Z" title="发表于 2022-06-14 18:56:50">2022-06-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/12/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5%E3%80%8F%E7%BB%93%E8%90%A5%E6%84%9F%E6%83%B3/" title="『字节青训营』结营感想">『字节青训营』结营感想</a><time datetime="2022-06-12T01:39:59.000Z" title="发表于 2022-06-12 09:39:59">2022-06-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/11/%E3%80%8EGolang%E3%80%8Fimport-%E4%B8%AD%E4%B8%8B%E5%88%92%E7%BA%BF%E7%9A%84%E4%BD%9C%E7%94%A8/" title="『Golang』import 中下划线，点，别名的作用">『Golang』import 中下划线，点，别名的作用</a><time datetime="2022-06-10T16:00:16.000Z" title="发表于 2022-06-11 00:00:16">2022-06-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/06/%E3%80%8E%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%E3%80%8F1%EF%BC%9A%E5%A6%82%E4%BD%95%E5%9C%A840%E4%BA%BF%E4%B8%AA%E6%95%B4%E6%95%B0%E4%B8%AD%E5%AF%BB%E6%89%BE%E4%B8%80%E4%B8%AA%E6%95%B0%E5%AD%97/" title="『面试八股文』1：如何在40亿个整数中寻找一个数字">『面试八股文』1：如何在40亿个整数中寻找一个数字</a><time datetime="2022-06-06T14:42:51.000Z" title="发表于 2022-06-06 22:42:51">2022-06-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/05/%E3%80%8E%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E3%80%8F%E5%8F%89%E4%B9%98%E7%9A%84%E8%AE%A1%E7%AE%97/" title="『大学物理』叉乘的计算">『大学物理』叉乘的计算</a><time datetime="2022-06-05T03:29:35.000Z" title="发表于 2022-06-05 11:29:35">2022-06-05</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+12345678910111213141516171819#include&lt;bits/stdc++.h&gt;using namespace std;int a[1000000],n,sum;int main()&#123;	cin&gt;&gt;n;	for(int i=1;i&lt;=n;i++)	&#123;		int j=2;		while(j*i&lt;=n)		&#123;			a[j*i]++;			j++;		&#125;		a[i]++;	&#125;	for(int i=1;i&lt;=n;i++)sum+=a[i];	cout&lt;&lt;sum;&#125;
+</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/14/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/#content-inner">14</a><span class="page-number current">15</span><a class="page-number" href="/page/16/#content-inner">16</a><a class="extend next" rel="next" href="/page/16/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/static/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nick Xu</div><div class="author-info__description">折腾就是快乐</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">注意：因为 jsDelivrCND 在国内寄了，故在本站在国内无法正常显示，鄙人最近一段时间很忙，只有等有空的时候再修了</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/14/%E3%80%8E%E9%9A%8F%E7%AC%94%E3%80%8F618%E6%A1%8C%E9%9D%A2%E6%94%B9%E9%80%A0%E8%AE%A1%E5%88%92/" title="『随笔』618桌面改造计划">『随笔』618桌面改造计划</a><time datetime="2022-06-14T10:56:50.000Z" title="发表于 2022-06-14 18:56:50">2022-06-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/12/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5%E3%80%8F%E7%BB%93%E8%90%A5%E6%84%9F%E6%83%B3/" title="『字节青训营』结营感想">『字节青训营』结营感想</a><time datetime="2022-06-12T01:39:59.000Z" title="发表于 2022-06-12 09:39:59">2022-06-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/11/%E3%80%8EGolang%E3%80%8Fimport-%E4%B8%AD%E4%B8%8B%E5%88%92%E7%BA%BF%E7%9A%84%E4%BD%9C%E7%94%A8/" title="『Golang』import 中下划线，点，别名的作用">『Golang』import 中下划线，点，别名的作用</a><time datetime="2022-06-10T16:00:16.000Z" title="发表于 2022-06-11 00:00:16">2022-06-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/06/%E3%80%8E%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%E3%80%8F1%EF%BC%9A%E5%A6%82%E4%BD%95%E5%9C%A840%E4%BA%BF%E4%B8%AA%E6%95%B4%E6%95%B0%E4%B8%AD%E5%AF%BB%E6%89%BE%E4%B8%80%E4%B8%AA%E6%95%B0%E5%AD%97/" title="『面试八股文』1：如何在40亿个整数中寻找一个数字">『面试八股文』1：如何在40亿个整数中寻找一个数字</a><time datetime="2022-06-06T14:42:51.000Z" title="发表于 2022-06-06 22:42:51">2022-06-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/05/%E3%80%8E%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E3%80%8F%E5%8F%89%E4%B9%98%E7%9A%84%E8%AE%A1%E7%AE%97/" title="『大学物理』叉乘的计算">『大学物理』叉乘的计算</a><time datetime="2022-06-05T03:29:35.000Z" title="发表于 2022-06-05 11:29:35">2022-06-05</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
             </div>
             <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/C-C/"><span class="card-category-list-name">C / C++</span><span class="card-category-list-count">13</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Golang/"><span class="card-category-list-name">Golang</span><span class="card-category-list-count">22</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Golang/Gin-%E6%A1%86%E6%9E%B6/"><span class="card-category-list-name">Gin 框架</span><span class="card-category-list-count">10</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Golang/%E8%AF%AD%E6%B3%95%E9%80%9F%E9%80%9A/"><span class="card-category-list-name">语法速通</span><span class="card-category-list-count">6</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Hexo-Butterfly-%E5%BB%BA%E7%AB%99%E6%8C%87%E5%8D%97/"><span class="card-category-list-name">Hexo + Butterfly 建站指南</span><span class="card-category-list-count">9</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Others/"><span class="card-category-list-name">Others</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python/"><span class="card-category-list-name">Python</span><span class="card-category-list-count">10</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python/Python3-%E5%85%A5%E9%97%A8/"><span class="card-category-list-name">Python3 入门</span><span class="card-category-list-count">10</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%85%AC%E5%91%8A/"><span class="card-category-list-name">公告</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%9F%BA%E7%A1%80%E8%AF%BE%E5%A4%8D%E4%B9%A0/"><span class="card-category-list-name">基础课复习</span><span class="card-category-list-count">8</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%9F%BA%E7%A1%80%E8%AF%BE%E5%A4%8D%E4%B9%A0/%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86/"><span class="card-category-list-name">大学物理</span><span class="card-category-list-count">2</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%9F%BA%E7%A1%80%E8%AF%BE%E5%A4%8D%E4%B9%A0/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6/"><span class="card-category-list-name">离散数学</span><span class="card-category-list-count">6</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/"><span class="card-category-list-name">微信小程序</span><span class="card-category-list-count">8</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80/"><span class="card-category-list-name">开发基础</span><span class="card-category-list-count">8</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"><span class="card-category-list-name">数据库</span><span class="card-category-list-count">14</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/SQL-%E5%85%A5%E9%97%A8/"><span class="card-category-list-name">SQL 入门</span><span class="card-category-list-count">12</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"><span class="card-category-list-name">数据结构与算法</span><span class="card-category-list-count">7</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97/"><span class="card-category-list-name">算法拾遗</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%96%B0%E6%8A%80%E8%83%BD-Got/"><span class="card-category-list-name">新技能 Got</span><span class="card-category-list-count">14</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%A0%91%E8%8E%93%E6%B4%BE/"><span class="card-category-list-name">树莓派</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/"><span class="card-category-list-name">运维</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%9A%8F%E7%AC%94/"><span class="card-category-list-name">随笔</span><span class="card-category-list-count">6</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%9D%92%E8%AE%AD%E8%90%A5/"><span class="card-category-list-name">青训营</span><span class="card-category-list-count">21</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87/"><span class="card-category-list-name">面试八股文</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%A2%98%E8%A7%A3/"><span class="card-category-list-name">题解</span><span class="card-category-list-count">4</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Gin/" style="font-size: 1.34em; color: rgb(85, 23, 20)">Gin</a><a href="/tags/Go/" style="font-size: 1.45em; color: rgb(197, 0, 109)">Go</a><a href="/tags/%E5%BB%BA%E7%AB%99%E6%8A%80%E5%B7%A7/" style="font-size: 1.34em; color: rgb(199, 156, 6)">建站技巧</a><a href="/tags/Minecraft/" style="font-size: 1.18em; color: rgb(63, 3, 126)">Minecraft</a><a href="/tags/Python/" style="font-size: 1.34em; color: rgb(165, 116, 121)">Python</a><a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 1.2em; color: rgb(148, 21, 88)">环境配置</a><a href="/tags/SQL/" style="font-size: 1.4em; color: rgb(87, 159, 95)">SQL</a><a href="/tags/C-C/" style="font-size: 1.45em; color: rgb(166, 57, 2)">C/C++</a><a href="/tags/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" style="font-size: 1.37em; color: rgb(197, 64, 154)">算法竞赛</a><a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 1.23em; color: rgb(11, 153, 70)">树莓派</a><a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 1.23em; color: rgb(183, 77, 161)">题解</a><a href="/tags/STL/" style="font-size: 1.18em; color: rgb(24, 192, 21)">STL</a><a href="/tags/Linux/" style="font-size: 1.29em; color: rgb(156, 190, 80)">Linux</a><a href="/tags/MySQL/" style="font-size: 1.18em; color: rgb(82, 35, 187)">MySQL</a><a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 1.15em; color: rgb(173, 9, 181)">运维</a><a href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/" style="font-size: 1.18em; color: rgb(22, 0, 75)">数据备份</a><a href="/tags/Windows/" style="font-size: 1.18em; color: rgb(100, 171, 33)">Windows</a><a href="/tags/%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5/" style="font-size: 1.42em; color: rgb(116, 126, 24)">字节青训营</a><a href="/tags/Others/" style="font-size: 1.2em; color: rgb(161, 46, 45)">Others</a><a href="/tags/Redis/" style="font-size: 1.15em; color: rgb(94, 199, 143)">Redis</a><a href="/tags/WSL/" style="font-size: 1.2em; color: rgb(52, 42, 95)">WSL</a><a href="/tags/Clash/" style="font-size: 1.15em; color: rgb(181, 40, 5)">Clash</a><a href="/tags/%E5%85%AC%E5%91%8A/" style="font-size: 1.15em; color: rgb(90, 163, 114)">公告</a><a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1.26em; color: rgb(88, 72, 127)">随笔</a><a href="/tags/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" style="font-size: 1.15em; color: rgb(174, 197, 154)">时间复杂度</a><a href="/tags/618%E5%A5%BD%E7%89%A9/" style="font-size: 1.15em; color: rgb(116, 46, 102)">618好物</a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 1.15em; color: rgb(12, 193, 159)">面试</a><a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 1.31em; color: rgb(179, 100, 58)">微信小程序</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
-    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/06/"><span class="card-archive-list-date">六月 2022</span><span class="card-archive-list-count">10</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/05/"><span class="card-archive-list-date">五月 2022</span><span class="card-archive-list-count">40</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/04/"><span class="card-archive-list-date">四月 2022</span><span class="card-archive-list-count">21</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/03/"><span class="card-archive-list-date">三月 2022</span><span class="card-archive-list-count">39</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/02/"><span class="card-archive-list-date">二月 2022</span><span class="card-archive-list-count">12</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/01/"><span class="card-archive-list-date">一月 2022</span><span class="card-archive-list-count">7</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/12/"><span class="card-archive-list-date">十二月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/11/"><span class="card-archive-list-date">十一月 2021</span><span class="card-archive-list-count">9</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">153</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2021-11-12T16:00:00.000Z"></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">137.5k</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-06-15T16:24:59.293Z"></div></div></div></div></div></div></main><footer id="footer" style="background: #0d0d0d"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Nick Xu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/Gin/" style="font-size: 1.34em; color: rgb(42, 29, 6)">Gin</a><a href="/tags/Go/" style="font-size: 1.45em; color: rgb(167, 28, 18)">Go</a><a href="/tags/%E5%BB%BA%E7%AB%99%E6%8A%80%E5%B7%A7/" style="font-size: 1.34em; color: rgb(138, 18, 115)">建站技巧</a><a href="/tags/Minecraft/" style="font-size: 1.18em; color: rgb(133, 113, 196)">Minecraft</a><a href="/tags/Python/" style="font-size: 1.34em; color: rgb(173, 195, 160)">Python</a><a href="/tags/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 1.2em; color: rgb(47, 10, 157)">环境配置</a><a href="/tags/SQL/" style="font-size: 1.4em; color: rgb(122, 81, 128)">SQL</a><a href="/tags/C-C/" style="font-size: 1.45em; color: rgb(194, 109, 12)">C/C++</a><a href="/tags/%E7%AE%97%E6%B3%95%E7%AB%9E%E8%B5%9B/" style="font-size: 1.37em; color: rgb(96, 196, 3)">算法竞赛</a><a href="/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/" style="font-size: 1.23em; color: rgb(158, 84, 41)">树莓派</a><a href="/tags/%E9%A2%98%E8%A7%A3/" style="font-size: 1.23em; color: rgb(31, 31, 196)">题解</a><a href="/tags/STL/" style="font-size: 1.18em; color: rgb(167, 47, 11)">STL</a><a href="/tags/Linux/" style="font-size: 1.29em; color: rgb(35, 165, 140)">Linux</a><a href="/tags/MySQL/" style="font-size: 1.18em; color: rgb(105, 178, 151)">MySQL</a><a href="/tags/%E6%95%B0%E6%8D%AE%E5%A4%87%E4%BB%BD/" style="font-size: 1.18em; color: rgb(4, 70, 24)">数据备份</a><a href="/tags/Windows/" style="font-size: 1.18em; color: rgb(187, 33, 113)">Windows</a><a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 1.15em; color: rgb(3, 92, 175)">运维</a><a href="/tags/%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5/" style="font-size: 1.42em; color: rgb(38, 168, 7)">字节青训营</a><a href="/tags/Others/" style="font-size: 1.2em; color: rgb(166, 186, 195)">Others</a><a href="/tags/Redis/" style="font-size: 1.15em; color: rgb(71, 146, 67)">Redis</a><a href="/tags/WSL/" style="font-size: 1.2em; color: rgb(113, 72, 178)">WSL</a><a href="/tags/Clash/" style="font-size: 1.15em; color: rgb(11, 159, 91)">Clash</a><a href="/tags/%E5%85%AC%E5%91%8A/" style="font-size: 1.15em; color: rgb(42, 151, 147)">公告</a><a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1.26em; color: rgb(30, 159, 165)">随笔</a><a href="/tags/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/" style="font-size: 1.15em; color: rgb(70, 6, 181)">时间复杂度</a><a href="/tags/618%E5%A5%BD%E7%89%A9/" style="font-size: 1.15em; color: rgb(39, 59, 158)">618好物</a><a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 1.15em; color: rgb(196, 172, 104)">面试</a><a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 1.31em; color: rgb(126, 101, 170)">微信小程序</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/06/"><span class="card-archive-list-date">六月 2022</span><span class="card-archive-list-count">10</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/05/"><span class="card-archive-list-date">五月 2022</span><span class="card-archive-list-count">40</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/04/"><span class="card-archive-list-date">四月 2022</span><span class="card-archive-list-count">21</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/03/"><span class="card-archive-list-date">三月 2022</span><span class="card-archive-list-count">39</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/02/"><span class="card-archive-list-date">二月 2022</span><span class="card-archive-list-count">12</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/01/"><span class="card-archive-list-date">一月 2022</span><span class="card-archive-list-count">7</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/12/"><span class="card-archive-list-date">十二月 2021</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/11/"><span class="card-archive-list-date">十一月 2021</span><span class="card-archive-list-count">9</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">153</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2021-11-12T16:00:00.000Z"></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">137.9k</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2022-06-15T16:26:19.587Z"></div></div></div></div></div></div></main><footer id="footer" style="background: #0d0d0d"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Nick Xu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function subtitleType () {
   if (true) { 
     window.typed = new Typed("#subtitle", {
       strings: ["安静地做自己","Be yourself quietly","今日事&#44;今日毕","Never put off till tomorrow what you can do today","折腾就是快乐","Suffering is happiness","人之忌&#44;在好为人师","The taboo of a person is liking to be others teacher"],
