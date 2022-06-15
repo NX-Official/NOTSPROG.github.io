@@ -1,0 +1,306 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>『字节青训营』L16：走进消息队列 | NX の 博客</title><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="引子四个案例        本地日志丢掉了，怎么办？  解决方案     前世今生发展历程 业界对比 消息队列-Kafka使用场景 如何使用 Kafka 基本概念 Offset 每个消息都有编号 Replica 复制多份副本，如果 Leader 所在的机器挂了，就在 ISR 中的副本重新选一个 Leader 数据复制 由 Controller 分配复制 Kafka 架构 一条消息的自述 思考 不能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『字节青训营』L16：走进消息队列">
+<meta property="og:url" content="https://www.nickxu.top/2022/05/31/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5%E3%80%8FL16%EF%BC%9A%E8%B5%B0%E8%BF%9B%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/index.html">
+<meta property="og:site_name" content="NX の 博客">
+<meta property="og:description" content="引子四个案例        本地日志丢掉了，怎么办？  解决方案     前世今生发展历程 业界对比 消息队列-Kafka使用场景 如何使用 Kafka 基本概念 Offset 每个消息都有编号 Replica 复制多份副本，如果 Leader 所在的机器挂了，就在 ISR 中的副本重新选一个 Leader 数据复制 由 Controller 分配复制 Kafka 架构 一条消息的自述 思考 不能">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="article:published_time" content="2022-05-31T07:34:43.000Z">
+<meta property="article:modified_time" content="2022-05-31T15:11:25.539Z">
+<meta property="article:author" content="Nick Xu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.nickxu.top/2022/05/31/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5%E3%80%8FL16%EF%BC%9A%E8%B5%B0%E8%BF%9B%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '『字节青训营』L16：走进消息队列',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-05-31 23:11:25'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/static/my.css"><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/static/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/static/202202230023069.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">NX の 博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">『字节青训营』L16：走进消息队列</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-05-31T07:34:43.000Z" title="发表于 2022-05-31 15:34:43">2022-05-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-05-31T15:11:25.539Z" title="更新于 2022-05-31 23:11:25">2022-05-31</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">516</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="『字节青训营』L16：走进消息队列"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h1><h2 id="四个案例"><a href="#四个案例" class="headerlink" title="四个案例"></a>四个案例</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312057193.png" alt="image-20220531205709120"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312057399.png" alt="image-20220531205729335"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312058600.png" alt="image-20220531205805499"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312058270.png" alt="image-20220531205819201"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312058129.png" alt="image-20220531205849066"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312058013.png" alt="image-20220531205857947"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312059668.png" alt="image-20220531205931609"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312059902.png" alt="image-20220531205937836"></p>
+<p>本地日志丢掉了，怎么办？</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312100131.png" alt="image-20220531210004058"></p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312100562.png" alt="image-20220531210054490"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312101607.png" alt="image-20220531210126547"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312101526.png" alt="image-20220531210156465"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312103088.png" alt="image-20220531210303031"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312103796.png" alt="image-20220531210335730"></p>
+<h1 id="前世今生"><a href="#前世今生" class="headerlink" title="前世今生"></a>前世今生</h1><h2 id="发展历程"><a href="#发展历程" class="headerlink" title="发展历程"></a>发展历程</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312104382.png" alt="image-20220531210434316"></p>
+<h2 id="业界对比"><a href="#业界对比" class="headerlink" title="业界对比"></a>业界对比</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312111940.png" alt="image-20220531211121850"></p>
+<h1 id="消息队列-Kafka"><a href="#消息队列-Kafka" class="headerlink" title="消息队列-Kafka"></a>消息队列-Kafka</h1><h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311915918.png" alt="image-20220531191521763"></p>
+<h2 id="如何使用-Kafka"><a href="#如何使用-Kafka" class="headerlink" title="如何使用 Kafka"></a>如何使用 Kafka</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311916021.png" alt="image-20220531191607884"></p>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311916553.png" alt="image-20220531191643396"></p>
+<h3 id="Offset"><a href="#Offset" class="headerlink" title="Offset"></a>Offset</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311917542.png" alt="image-20220531191740421"></p>
+<p>每个消息都有编号</p>
+<h3 id="Replica"><a href="#Replica" class="headerlink" title="Replica"></a>Replica</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311918154.png" alt="image-20220531191804042"></p>
+<p>复制多份副本，如果 Leader 所在的机器挂了，就在 ISR 中的副本重新选一个 Leader</p>
+<h2 id="数据复制"><a href="#数据复制" class="headerlink" title="数据复制"></a>数据复制</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311919733.png" alt="image-20220531191919615"></p>
+<p>由 Controller 分配复制</p>
+<h2 id="Kafka-架构"><a href="#Kafka-架构" class="headerlink" title="Kafka 架构"></a>Kafka 架构</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311920337.png" alt="image-20220531192008229"></p>
+<h2 id="一条消息的自述"><a href="#一条消息的自述" class="headerlink" title="一条消息的自述"></a>一条消息的自述</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311920165.png" alt="image-20220531192027072"></p>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311920544.png" alt="image-20220531192046420"></p>
+<p>不能一个一个发，应该要一起发送</p>
+<h2 id="Producer"><a href="#Producer" class="headerlink" title="Producer"></a>Producer</h2><h3 id="批量发送"><a href="#批量发送" class="headerlink" title="批量发送"></a>批量发送</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311921540.png" alt="image-20220531192119423"></p>
+<h3 id="数据压缩"><a href="#数据压缩" class="headerlink" title="数据压缩"></a>数据压缩</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311921359.png" alt="image-20220531192144266"></p>
+<p>最好的是 ZSTD</p>
+<h2 id="Broker"><a href="#Broker" class="headerlink" title="Broker"></a>Broker</h2><h3 id="数据的存储"><a href="#数据的存储" class="headerlink" title="数据的存储"></a>数据的存储</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311923189.png" alt="image-20220531192302105"></p>
+<h3 id="消息文件结构"><a href="#消息文件结构" class="headerlink" title="消息文件结构"></a>消息文件结构</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311923640.png" alt="image-20220531192315548"></p>
+<h3 id="磁盘结构"><a href="#磁盘结构" class="headerlink" title="磁盘结构"></a>磁盘结构</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311924170.png" alt="image-20220531192438022"></p>
+<h3 id="顺序写"><a href="#顺序写" class="headerlink" title="顺序写"></a>顺序写</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311925375.png" alt="image-20220531192520280"></p>
+<h3 id="如何找到消息"><a href="#如何找到消息" class="headerlink" title="如何找到消息"></a>如何找到消息</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311925891.png" alt="image-20220531192557784"></p>
+<h3 id="偏移量索引文件"><a href="#偏移量索引文件" class="headerlink" title="偏移量索引文件"></a>偏移量索引文件</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311926340.png" alt="image-20220531192627242"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311926423.png" alt="image-20220531192642328"></p>
+<h3 id="时间戳索引文件"><a href="#时间戳索引文件" class="headerlink" title="时间戳索引文件"></a>时间戳索引文件</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311927645.png" alt="image-20220531192735513"></p>
+<h3 id="传统数据拷贝"><a href="#传统数据拷贝" class="headerlink" title="传统数据拷贝"></a>传统数据拷贝</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311927473.png" alt="image-20220531192757345"></p>
+<h3 id="零拷贝"><a href="#零拷贝" class="headerlink" title="零拷贝"></a>零拷贝</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311928163.png" alt="image-20220531192838069"></p>
+<h2 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h2><h3 id="消息的接收端"><a href="#消息的接收端" class="headerlink" title="消息的接收端"></a>消息的接收端</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311930593.png" alt="image-20220531193034477"></p>
+<h3 id="Low-Level-手动分配"><a href="#Low-Level-手动分配" class="headerlink" title="Low Level 手动分配"></a>Low Level 手动分配</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311931704.png" alt="image-20220531193112562"></p>
+<p>优点：方便快捷</p>
+<p>问题：</p>
+<ol>
+<li>如果某个 Consumer 挂掉了，那它负责的那些 Partition 直接阻塞</li>
+<li>如果某个 Consumer 能力不够，想其他 Consumer 来接替，必会出现机器的启停</li>
+</ol>
+<h3 id="High-Level-自动分配"><a href="#High-Level-自动分配" class="headerlink" title="High Level 自动分配"></a>High Level 自动分配</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311932621.png" alt="image-20220531193210526"></p>
+<h2 id="Consumer-Rebalance"><a href="#Consumer-Rebalance" class="headerlink" title="Consumer Rebalance"></a>Consumer Rebalance</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311933066.png" alt="image-20220531193342965"></p>
+<p>（这个流程有点复杂，可以去查找更多资料学习）</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311939127.png" alt="image-20220531193958034"></p>
+<hr>
+<p>下面是一些缺点</p>
+<h2 id="数据复制问题"><a href="#数据复制问题" class="headerlink" title="数据复制问题"></a>数据复制问题</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311941215.png" alt="image-20220531194102108"></p>
+<h2 id="重启操作"><a href="#重启操作" class="headerlink" title="重启操作"></a>重启操作</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311941163.png" alt="image-20220531194124057"></p>
+<p>（重启一个节点要很久，重启所有节点要数天甚是数周）</p>
+<p>不能并发重启，可能一个片放在两个机器上</p>
+<h2 id="替换、扩容、缩容"><a href="#替换、扩容、缩容" class="headerlink" title="替换、扩容、缩容"></a>替换、扩容、缩容</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311943483.png" alt="image-20220531194313382"></p>
+<p>（只要有节点的变动，就有复制的成本）</p>
+<h2 id="负载不均衡"><a href="#负载不均衡" class="headerlink" title="负载不均衡"></a>负载不均衡</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311943436.png" alt="image-20220531194352353"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311944899.png" alt="image-20220531194401807"></p>
+<p>（想解决 IO 问题，引入了新的 IO 问题）</p>
+<h2 id="问题总结"><a href="#问题总结" class="headerlink" title="问题总结"></a>问题总结</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205311944230.png" alt="image-20220531194442112"></p>
+<h1 id="消息队列-BMQ"><a href="#消息队列-BMQ" class="headerlink" title="消息队列-BMQ"></a>消息队列-BMQ</h1><h3 id="BMQ-简介"><a href="#BMQ-简介" class="headerlink" title="BMQ 简介"></a>BMQ 简介</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312051280.png" alt="image-20220531205159212"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312052562.png" alt="image-20220531205206499"></p>
+<p>读写分离</p>
+<h2 id="运维操作对比"><a href="#运维操作对比" class="headerlink" title="运维操作对比"></a>运维操作对比</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312054447.png" alt="image-20220531205428375"></p>
+<h2 id="HDFS-写文件流程"><a href="#HDFS-写文件流程" class="headerlink" title="HDFS 写文件流程"></a>HDFS 写文件流程</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312055642.png" alt="image-20220531205503584"></p>
+<h2 id="BMQ-文件结构"><a href="#BMQ-文件结构" class="headerlink" title="BMQ 文件结构"></a>BMQ 文件结构</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312056517.png" alt="image-20220531205621450"></p>
+<p>同一个节点会打散到很多机器当中</p>
+<h2 id="Broker-1"><a href="#Broker-1" class="headerlink" title="Broker"></a>Broker</h2><h3 id="Partition-状态机"><a href="#Partition-状态机" class="headerlink" title="Partition 状态机"></a>Partition 状态机</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312220785.png" alt="image-20220531222013714"></p>
+<p>（听得有点迷）</p>
+<h3 id="写文件流程"><a href="#写文件流程" class="headerlink" title="写文件流程"></a>写文件流程</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312223252.png" alt="image-20220531222344184"></p>
+<p>（有点迷）</p>
+<h3 id="写文件-Failover"><a href="#写文件-Failover" class="headerlink" title="写文件 Failover"></a>写文件 Failover</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312229448.png" alt="image-20220531222922382"></p>
+<h2 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312230572.png" alt="image-20220531223012504"></p>
+<h2 id="多机房部署"><a href="#多机房部署" class="headerlink" title="多机房部署"></a>多机房部署</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312233186.png" alt="image-20220531223305121"></p>
+<h2 id="BMQ-的高级特性"><a href="#BMQ-的高级特性" class="headerlink" title="BMQ 的高级特性"></a>BMQ 的高级特性</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312250600.png" alt="image-20220531224959648">	</p>
+<h3 id="泳道消息"><a href="#泳道消息" class="headerlink" title="泳道消息"></a>泳道消息</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312251914.png" alt="image-20220531225108853"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312251434.png" alt="image-20220531225150367"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312252701.png" alt="image-20220531225221626"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312253815.png" alt="image-20220531225308731"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312254561.png" alt="image-20220531225418485"></p>
+<h3 id="Databus"><a href="#Databus" class="headerlink" title="Databus"></a>Databus</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312256709.png" alt="image-20220531225604630"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312257996.png" alt="image-20220531225710931"></p>
+<h3 id="Mirror"><a href="#Mirror" class="headerlink" title="Mirror"></a>Mirror</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312258253.png" alt="image-20220531225803184"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312258478.png" alt="image-20220531225857412"></p>
+<h3 id="Index"><a href="#Index" class="headerlink" title="Index"></a>Index</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312259891.png" alt="image-20220531225945829"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312300852.png" alt="image-20220531230010786"></p>
+<h3 id="Parquet"><a href="#Parquet" class="headerlink" title="Parquet"></a>Parquet</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312301268.png" alt="image-20220531230108198"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312301809.png" alt="image-20220531230146740"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312302985.png" alt="image-20220531230240919"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312302120.png" alt="image-20220531230248046"></p>
+<h1 id="消息队列-RocketMQ"><a href="#消息队列-RocketMQ" class="headerlink" title="消息队列- RocketMQ"></a>消息队列- RocketMQ</h1><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312303257.png" alt="image-20220531230318188"></p>
+<h2 id="RocketMQ-基本概念"><a href="#RocketMQ-基本概念" class="headerlink" title="RocketMQ 基本概念"></a>RocketMQ 基本概念</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312303559.png" alt="image-20220531230342484"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312304850.png" alt="image-20220531230453785"></p>
+<h2 id="RocketMQ-架构"><a href="#RocketMQ-架构" class="headerlink" title="RocketMQ 架构"></a>RocketMQ 架构</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312305001.png" alt="image-20220531230510936"></p>
+<h2 id="存储模型"><a href="#存储模型" class="headerlink" title="存储模型"></a>存储模型</h2><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312305634.png" alt="image-20220531230555571"></p>
+<h2 id="高级特性"><a href="#高级特性" class="headerlink" title="高级特性"></a>高级特性</h2><h3 id="事务场景"><a href="#事务场景" class="headerlink" title="事务场景"></a>事务场景</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312306265.png" alt="image-20220531230647201"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312307420.png" alt="image-20220531230731353"></p>
+<h3 id="延迟发送"><a href="#延迟发送" class="headerlink" title="延迟发送"></a>延迟发送</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312308148.png" alt="image-20220531230843088"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312309476.png" alt="image-20220531230926414"></p>
+<h3 id="重试和死信队列"><a href="#重试和死信队列" class="headerlink" title="重试和死信队列"></a>重试和死信队列</h3><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312310428.png" alt="image-20220531231016360"></p>
+<p>（右下角的内容错了，应该是死信队列）</p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312311464.png" alt="image-20220531231113397"></p>
+<p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202205312311344.png" alt="image-20220531231125281"></p>
+</article><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/static/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nick Xu</div><div class="author-info__description">折腾就是快乐</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">153</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">注意：因为 jsDelivrCND 在国内寄了，故在本站在国内无法正常显示，鄙人最近一段时间很忙，只有等有空的时候再修了</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E5%AD%90"><span class="toc-number">1.</span> <span class="toc-text">引子</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E4%B8%AA%E6%A1%88%E4%BE%8B"><span class="toc-number">1.1.</span> <span class="toc-text">四个案例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">1.2.</span> <span class="toc-text">解决方案</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F"><span class="toc-number">2.</span> <span class="toc-text">前世今生</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B"><span class="toc-number">2.1.</span> <span class="toc-text">发展历程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%9A%E7%95%8C%E5%AF%B9%E6%AF%94"><span class="toc-number">2.2.</span> <span class="toc-text">业界对比</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97-Kafka"><span class="toc-number">3.</span> <span class="toc-text">消息队列-Kafka</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">3.1.</span> <span class="toc-text">使用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-Kafka"><span class="toc-number">3.2.</span> <span class="toc-text">如何使用 Kafka</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">3.3.</span> <span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Offset"><span class="toc-number">3.3.1.</span> <span class="toc-text">Offset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Replica"><span class="toc-number">3.3.2.</span> <span class="toc-text">Replica</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%8D%E5%88%B6"><span class="toc-number">3.4.</span> <span class="toc-text">数据复制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kafka-%E6%9E%B6%E6%9E%84"><span class="toc-number">3.5.</span> <span class="toc-text">Kafka 架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E6%9D%A1%E6%B6%88%E6%81%AF%E7%9A%84%E8%87%AA%E8%BF%B0"><span class="toc-number">3.6.</span> <span class="toc-text">一条消息的自述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83"><span class="toc-number">3.7.</span> <span class="toc-text">思考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Producer"><span class="toc-number">3.8.</span> <span class="toc-text">Producer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%B9%E9%87%8F%E5%8F%91%E9%80%81"><span class="toc-number">3.8.1.</span> <span class="toc-text">批量发送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9"><span class="toc-number">3.8.2.</span> <span class="toc-text">数据压缩</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Broker"><span class="toc-number">3.9.</span> <span class="toc-text">Broker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AD%98%E5%82%A8"><span class="toc-number">3.9.1.</span> <span class="toc-text">数据的存储</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">3.9.2.</span> <span class="toc-text">消息文件结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E7%BB%93%E6%9E%84"><span class="toc-number">3.9.3.</span> <span class="toc-text">磁盘结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E5%86%99"><span class="toc-number">3.9.4.</span> <span class="toc-text">顺序写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%89%BE%E5%88%B0%E6%B6%88%E6%81%AF"><span class="toc-number">3.9.5.</span> <span class="toc-text">如何找到消息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%8F%E7%A7%BB%E9%87%8F%E7%B4%A2%E5%BC%95%E6%96%87%E4%BB%B6"><span class="toc-number">3.9.6.</span> <span class="toc-text">偏移量索引文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E6%88%B3%E7%B4%A2%E5%BC%95%E6%96%87%E4%BB%B6"><span class="toc-number">3.9.7.</span> <span class="toc-text">时间戳索引文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%A0%E7%BB%9F%E6%95%B0%E6%8D%AE%E6%8B%B7%E8%B4%9D"><span class="toc-number">3.9.8.</span> <span class="toc-text">传统数据拷贝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%B6%E6%8B%B7%E8%B4%9D"><span class="toc-number">3.9.9.</span> <span class="toc-text">零拷贝</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Consumer"><span class="toc-number">3.10.</span> <span class="toc-text">Consumer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E7%9A%84%E6%8E%A5%E6%94%B6%E7%AB%AF"><span class="toc-number">3.10.1.</span> <span class="toc-text">消息的接收端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Low-Level-%E6%89%8B%E5%8A%A8%E5%88%86%E9%85%8D"><span class="toc-number">3.10.2.</span> <span class="toc-text">Low Level 手动分配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#High-Level-%E8%87%AA%E5%8A%A8%E5%88%86%E9%85%8D"><span class="toc-number">3.10.3.</span> <span class="toc-text">High Level 自动分配</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Consumer-Rebalance"><span class="toc-number">3.11.</span> <span class="toc-text">Consumer Rebalance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%8D%E5%88%B6%E9%97%AE%E9%A2%98"><span class="toc-number">3.12.</span> <span class="toc-text">数据复制问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E5%90%AF%E6%93%8D%E4%BD%9C"><span class="toc-number">3.13.</span> <span class="toc-text">重启操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2%E3%80%81%E6%89%A9%E5%AE%B9%E3%80%81%E7%BC%A9%E5%AE%B9"><span class="toc-number">3.14.</span> <span class="toc-text">替换、扩容、缩容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%9F%E8%BD%BD%E4%B8%8D%E5%9D%87%E8%A1%A1"><span class="toc-number">3.15.</span> <span class="toc-text">负载不均衡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93"><span class="toc-number">3.16.</span> <span class="toc-text">问题总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97-BMQ"><span class="toc-number">4.</span> <span class="toc-text">消息队列-BMQ</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BMQ-%E7%AE%80%E4%BB%8B"><span class="toc-number">4.0.1.</span> <span class="toc-text">BMQ 简介</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E7%BB%B4%E6%93%8D%E4%BD%9C%E5%AF%B9%E6%AF%94"><span class="toc-number">4.1.</span> <span class="toc-text">运维操作对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDFS-%E5%86%99%E6%96%87%E4%BB%B6%E6%B5%81%E7%A8%8B"><span class="toc-number">4.2.</span> <span class="toc-text">HDFS 写文件流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BMQ-%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">4.3.</span> <span class="toc-text">BMQ 文件结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Broker-1"><span class="toc-number">4.4.</span> <span class="toc-text">Broker</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Partition-%E7%8A%B6%E6%80%81%E6%9C%BA"><span class="toc-number">4.4.1.</span> <span class="toc-text">Partition 状态机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E6%96%87%E4%BB%B6%E6%B5%81%E7%A8%8B"><span class="toc-number">4.4.2.</span> <span class="toc-text">写文件流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%99%E6%96%87%E4%BB%B6-Failover"><span class="toc-number">4.4.3.</span> <span class="toc-text">写文件 Failover</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Proxy"><span class="toc-number">4.5.</span> <span class="toc-text">Proxy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%9C%BA%E6%88%BF%E9%83%A8%E7%BD%B2"><span class="toc-number">4.6.</span> <span class="toc-text">多机房部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BMQ-%E7%9A%84%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7"><span class="toc-number">4.7.</span> <span class="toc-text">BMQ 的高级特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%B3%E9%81%93%E6%B6%88%E6%81%AF"><span class="toc-number">4.7.1.</span> <span class="toc-text">泳道消息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Databus"><span class="toc-number">4.7.2.</span> <span class="toc-text">Databus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Mirror"><span class="toc-number">4.7.3.</span> <span class="toc-text">Mirror</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Index"><span class="toc-number">4.7.4.</span> <span class="toc-text">Index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parquet"><span class="toc-number">4.7.5.</span> <span class="toc-text">Parquet</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97-RocketMQ"><span class="toc-number">5.</span> <span class="toc-text">消息队列- RocketMQ</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RocketMQ-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">5.1.</span> <span class="toc-text">RocketMQ 基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RocketMQ-%E6%9E%B6%E6%9E%84"><span class="toc-number">5.2.</span> <span class="toc-text">RocketMQ 架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E6%A8%A1%E5%9E%8B"><span class="toc-number">5.3.</span> <span class="toc-text">存储模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7"><span class="toc-number">5.4.</span> <span class="toc-text">高级特性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E5%9C%BA%E6%99%AF"><span class="toc-number">5.4.1.</span> <span class="toc-text">事务场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%B6%E8%BF%9F%E5%8F%91%E9%80%81"><span class="toc-number">5.4.2.</span> <span class="toc-text">延迟发送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E8%AF%95%E5%92%8C%E6%AD%BB%E4%BF%A1%E9%98%9F%E5%88%97"><span class="toc-number">5.4.3.</span> <span class="toc-text">重试和死信队列</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/14/%E3%80%8E%E9%9A%8F%E7%AC%94%E3%80%8F618%E6%A1%8C%E9%9D%A2%E6%94%B9%E9%80%A0%E8%AE%A1%E5%88%92/" title="『随笔』618桌面改造计划">『随笔』618桌面改造计划</a><time datetime="2022-06-14T10:56:50.000Z" title="发表于 2022-06-14 18:56:50">2022-06-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/12/%E3%80%8E%E5%AD%97%E8%8A%82%E9%9D%92%E8%AE%AD%E8%90%A5%E3%80%8F%E7%BB%93%E8%90%A5%E6%84%9F%E6%83%B3/" title="『字节青训营』结营感想">『字节青训营』结营感想</a><time datetime="2022-06-12T01:39:59.000Z" title="发表于 2022-06-12 09:39:59">2022-06-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/11/%E3%80%8EGolang%E3%80%8Fimport-%E4%B8%AD%E4%B8%8B%E5%88%92%E7%BA%BF%E7%9A%84%E4%BD%9C%E7%94%A8/" title="『Golang』import 中下划线，点，别名的作用">『Golang』import 中下划线，点，别名的作用</a><time datetime="2022-06-10T16:00:16.000Z" title="发表于 2022-06-11 00:00:16">2022-06-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/06/%E3%80%8E%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%E3%80%8F1%EF%BC%9A%E5%A6%82%E4%BD%95%E5%9C%A840%E4%BA%BF%E4%B8%AA%E6%95%B4%E6%95%B0%E4%B8%AD%E5%AF%BB%E6%89%BE%E4%B8%80%E4%B8%AA%E6%95%B0%E5%AD%97/" title="『面试八股文』1：如何在40亿个整数中寻找一个数字">『面试八股文』1：如何在40亿个整数中寻找一个数字</a><time datetime="2022-06-06T14:42:51.000Z" title="发表于 2022-06-06 22:42:51">2022-06-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/06/05/%E3%80%8E%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E3%80%8F%E5%8F%89%E4%B9%98%E7%9A%84%E8%AE%A1%E7%AE%97/" title="『大学物理』叉乘的计算">『大学物理』叉乘的计算</a><time datetime="2022-06-05T03:29:35.000Z" title="发表于 2022-06-05 11:29:35">2022-06-05</time></div></div></div></div></div></div></main><footer id="footer" style="background: #0d0d0d"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Nick Xu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="/pluginsSrc/katex/dist/katex.min.css"><script src="/pluginsSrc/katex/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="/pluginsSrc/katex/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('/pluginsSrc/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div></div></body></html>
