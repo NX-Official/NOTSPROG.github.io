@@ -4,12 +4,20 @@
   
     
     <entry>
-      <title>『大学物理』大一下期末复习</title>
+      <title>『大学物理1』期末复习</title>
       <link href="/2022/06/22/%E3%80%8E%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E3%80%8F%E5%A4%A7%E4%B8%80%E4%B8%8B%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/"/>
       <url>/2022/06/22/%E3%80%8E%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%86%E3%80%8F%E5%A4%A7%E4%B8%80%E4%B8%8B%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/</url>
       
         <content type="html"><![CDATA[<p>电通量：场强乘以面积</p><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206212142516.png" alt="image-20220621214211394"></p><p>安培环路定理：</p><p>空间中有一些电流，它们激发出磁场。对于任意回路，它的环流等于内部净电流乘以 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>μ</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">\mu _{0}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord"><span class="mord mathnormal">μ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></p><p>静电场的高斯定理：</p><p>任意闭合面的电通量等于内部净电荷乘以 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mn>1</mn><msub><mi>ε</mi><mn>0</mn></msub></mfrac></mstyle></mrow><annotation encoding="application/x-tex">\dfrac{1}{\varepsilon _{0}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.1574em;vertical-align:-0.836em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3214em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal">ε</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.836em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p><p><img src="https://pic-go-img.oss-cn-hangzhou.aliyuncs.com/202206211430250.png" alt="image-20220621143046181"></p>]]></content>
       
+      
+      <categories>
+          
+          <category> 基础课复习 </category>
+          
+          <category> 大学物理 </category>
+          
+      </categories>
       
       
     </entry>
@@ -1572,7 +1580,7 @@
     
     
     <entry>
-      <title>『大学物理』大一下期中复习</title>
+      <title>『大学物理1』期中复习</title>
       <link href="/2022/04/15/%E3%80%8EOthers%E3%80%8F%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%861-%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0/"/>
       <url>/2022/04/15/%E3%80%8EOthers%E3%80%8F%E5%A4%A7%E5%AD%A6%E7%89%A9%E7%90%861-%E6%9C%9F%E4%B8%AD%E5%A4%8D%E4%B9%A0/</url>
       
