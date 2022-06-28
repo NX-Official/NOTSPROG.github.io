@@ -4,6 +4,149 @@
   
     
     <entry>
+      <title>MySQL 数据类型之JSON</title>
+      <link href="/2022/06/28/MySQL-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B9%8BJSON/"/>
+      <url>/2022/06/28/MySQL-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B9%8BJSON/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> C </category>
+          
+          <category> D </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> A </tag>
+            
+            <tag> B </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>MySQL 数据类型之字符串</title>
+      <link href="/2022/06/28/MySQL-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+      <url>/2022/06/28/MySQL-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B9%8B%E5%AD%97%E7%AC%A6%E4%B8%B2/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> C </category>
+          
+          <category> D </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> A </tag>
+            
+            <tag> B </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>MySQL 数据类型之日期时间</title>
+      <link href="/2022/06/28/MySQL-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B9%8B%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4/"/>
+      <url>/2022/06/28/MySQL-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B9%8B%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> C </category>
+          
+          <category> D </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> A </tag>
+            
+            <tag> B </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>MySQL 数据类型之数值</title>
+      <link href="/2022/06/28/MySQL-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B9%8B%E6%95%B0%E5%80%BC/"/>
+      <url>/2022/06/28/MySQL-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E4%B9%8B%E6%95%B0%E5%80%BC/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> C </category>
+          
+          <category> D </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> A </tag>
+            
+            <tag> B </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>『面试八股文』2：数据库自增 ID 用完了会咋样？</title>
+      <link href="/2022/06/26/%E3%80%8E%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%E3%80%8F2%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E8%87%AA%E5%A2%9E-ID-%E7%94%A8%E5%AE%8C%E4%BA%86%E4%BC%9A%E5%92%8B%E6%A0%B7%EF%BC%9F/"/>
+      <url>/2022/06/26/%E3%80%8E%E9%9D%A2%E8%AF%95%E5%85%AB%E8%82%A1%E6%96%87%E3%80%8F2%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93%E8%87%AA%E5%A2%9E-ID-%E7%94%A8%E5%AE%8C%E4%BA%86%E4%BC%9A%E5%92%8B%E6%A0%B7%EF%BC%9F/</url>
+      
+        <content type="html"><![CDATA[<p>先说结论：</p><p>数据库自增主键用完后分两种情况</p><ul><li>有主键，报主键冲突</li><li>无主键，InnDB 会自动生成一个全局的row_id。它到达最大值后会从 0 开始算，遇到 row_id 一样时，新数据覆盖旧数据。所以，我们还是尽量给表设置主键。</li></ul><p>FROM:<a href="https://juejin.cn/post/6984275678761844743#heading-5">https://juejin.cn/post/6984275678761844743#heading-5</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 面试八股文 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> SQL </tag>
+            
+            <tag> 面试 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SQL 入门笔记（十八）使用视图</title>
       <link href="/2022/06/25/SQL-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%E4%BD%BF%E7%94%A8%E8%A7%86%E5%9B%BE/"/>
       <url>/2022/06/25/SQL-%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0%EF%BC%88%E5%8D%81%E5%85%AB%EF%BC%89%E4%BD%BF%E7%94%A8%E8%A7%86%E5%9B%BE/</url>
@@ -3343,7 +3486,7 @@
       <link href="/2022/02/07/%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/"/>
       <url>/2022/02/07/%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/</url>
       
-        <content type="html"><![CDATA[<h1 id="从-scanf-和-printf-讲起">从 scanf() 和 printf() 讲起</h1><p>在使用 <code>scanf()</code> 和 <code>printf()</code> 时，你会发现一个奇怪的现象，它的参数个数是不确定的，格式化字符串中有多少个<code>%</code>，后面就要跟多少个参数</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,a);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d %d&quot;</span>,a,b);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d %d %d&quot;</span>,a,b,c);</span><br><span class="line">......</span><br></pre></td></tr></table></figure><p>但在我们一般的印象中，一个函数在被声明时，它的参数个数就固定了，不能改变</p><p>让我们在 <code>stdio.h</code> 中找到 <code>scanf()</code> 的定义：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">scanf</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *__format, ...)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> __retval;</span><br><span class="line">  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );</span><br><span class="line">  __retval = __mingw_vfscanf( <span class="built_in">stdin</span>, __format, __local_argv );</span><br><span class="line">  __builtin_va_end( __local_argv );</span><br><span class="line">  <span class="keyword">return</span> __retval;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>接受参数怎么有个省略号？还可以这样写吗？</p><p>这便牵扯到可变参数</p><h1 id="可变参数的头文件">可变参数的头文件</h1><p>我们在使用可变参数时，需要引入 <code>stdarg.h</code> 头文件</p><p>在 <code>stdarg.h</code> 中，有一个数据类型，四个宏</p><table><thead><tr><th style="text-align:left">类型</th><th style="text-align:left">描述</th></tr></thead><tbody><tr><td style="text-align:left">va_list</td><td style="text-align:left">用来保存宏va_arg与宏va_end所需信息</td></tr></tbody></table><table><thead><tr><th style="text-align:left">宏</th><th style="text-align:left">描述</th></tr></thead><tbody><tr><td style="text-align:left">va_start(va_list,省略号的前一个参数)</td><td style="text-align:left">使va_list指向起始的参数</td></tr><tr><td style="text-align:left">va_arg(va_list,参数类型)</td><td style="text-align:left">检索参数并返回</td></tr><tr><td style="text-align:left">va_end(va_list)</td><td style="text-align:left">释放va_list的内存空间</td></tr><tr><td style="text-align:left">va_copy(va_list, va_list)</td><td style="text-align:left">拷贝va_list的内容，va_copy(va2, va1)作用为拷贝va1到va2</td></tr></tbody></table><h1 id="如何使用">如何使用</h1><ol><li>定义一个函数，最后一个参数为省略号，省略号前面可以有任意个参数，但至少要有一个</li><li>声明一个 <code>va_list</code> 类型变量用于承载参数列表</li><li>使用 <code>va_start()</code> 初始化 <code>va_list</code></li><li>多次使用 <code>va_arg()</code> 依次获取参数列表里的值，每执行一次就返回一个参数（通过类型自动跳到下一个参数的位置）</li><li>使用宏 <code>va_end()</code> 来回收 <code>va_list</code> 变量</li></ol><p><strong>注意：没有机制可以确定省略号里一共传递了多少个参数，以及他们各自的数据类型（ <code>va_arg()</code> 会一直往后跳，即使已经超出了总参数的个数，它也不知道）</strong></p><p>为了解决这个问题，通常有三种方法</p><ul><li>在省略号前传入一个整型，表示后面参数的总数（总数变量法）</li><li>使用一个特定的标识符来确定参数的结尾，如传递一串 <code>int</code> ，并使用 <code>-1</code> 表示数据结束（标识符法）</li><li>在省略号前传入一个格式化字符串，通过字符串确定参数的数量以及各自的类型（格式化字符串法，类似 <code>scanf()</code> 和 <code>printf()</code> ）</li></ul><h1 id="样例-3">样例</h1><div class="tabs" id="样例"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#样例-1">总数变量法</button></li><li class="tab"><button type="button" data-href="#样例-2">标识符法</button></li><li class="tab"><button type="button" data-href="#样例-3">格式化字符串法</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="样例-1"><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdarg.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">sum</span><span class="params">(<span class="type">int</span> num, ...)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    va_list <span class="built_in">list</span>; <span class="comment">//定义 va_list 类型变量</span></span><br><span class="line"></span><br><span class="line">    va_start(<span class="built_in">list</span>, num); <span class="comment">//初始化</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= num; i++)</span><br><span class="line">        sum += va_arg(<span class="built_in">list</span>, <span class="type">int</span>); <span class="comment">//依次获取参数</span></span><br><span class="line"></span><br><span class="line">    va_end(<span class="built_in">list</span>); <span class="comment">//回收变量</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// freopen(&quot;input.txt&quot;, &quot;r&quot;, stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;output.txt&quot;, &quot;w&quot;, stdout);</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Sum of 2, 3, 4, 5 = %d\n&quot;</span>, sum(<span class="number">4</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)); <span class="comment">// Sum of 2, 3, 4, 5 = 14</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="样例-2"><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdarg.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">sum</span><span class="params">(<span class="type">int</span> tmp, ...)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    va_list <span class="built_in">list</span>; <span class="comment">//定义 va_list 类型变量</span></span><br><span class="line"></span><br><span class="line">    va_start(<span class="built_in">list</span>, tmp); <span class="comment">//初始化</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = tmp; i != <span class="number">-1</span>; i = va_arg(<span class="built_in">list</span>, <span class="type">int</span>))</span><br><span class="line">        sum += i; <span class="comment">//依次获取参数</span></span><br><span class="line"></span><br><span class="line">    va_end(<span class="built_in">list</span>); <span class="comment">//回收变量</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// freopen(&quot;input.txt&quot;, &quot;r&quot;, stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;output.txt&quot;, &quot;w&quot;, stdout);</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Sum of 2, 3, 4, 5 = %d\n&quot;</span>, sum(<span class="number">4</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)); <span class="comment">// Sum of 2, 3, 4, 5 = 14</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="样例-3"><p><s>不想写</s>，评论区有大佬的话可以写一个</p><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div></div><p>参考资料：</p><ul><li><a href="https://www.runoob.com/cprogramming/c-variable-arguments.html">C 可变参数 | 菜鸟教程</a></li><li><a href="https://baike.baidu.com/item/stdarg.h/10239382?fr=aladdin">stdarg.h_百度百科</a></li></ul>]]></content>
+        <content type="html"><![CDATA[<h1 id="从-scanf-和-printf-讲起">从 scanf() 和 printf() 讲起</h1><p>在使用 <code>scanf()</code> 和 <code>printf()</code> 时，你会发现一个奇怪的现象，它的参数个数是不确定的，格式化字符串中有多少个<code>%</code>，后面就要跟多少个参数</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,a);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d %d&quot;</span>,a,b);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d %d %d&quot;</span>,a,b,c);</span><br><span class="line">......</span><br></pre></td></tr></table></figure><p>但在我们一般的印象中，一个函数在被声明时，它的参数个数就固定了，不能改变</p><p>让我们在 <code>stdio.h</code> 中找到 <code>scanf()</code> 的定义：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">scanf</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *__format, ...)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">int</span> __retval;</span><br><span class="line">  __builtin_va_list __local_argv; __builtin_va_start( __local_argv, __format );</span><br><span class="line">  __retval = __mingw_vfscanf( <span class="built_in">stdin</span>, __format, __local_argv );</span><br><span class="line">  __builtin_va_end( __local_argv );</span><br><span class="line">  <span class="keyword">return</span> __retval;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>接受参数怎么有个省略号？还可以这样写吗？</p><p>这便牵扯到可变参数</p><h1 id="可变参数的头文件">可变参数的头文件</h1><p>我们在使用可变参数时，需要引入 <code>stdarg.h</code> 头文件</p><p>在 <code>stdarg.h</code> 中，有一个数据类型，四个宏</p><table><thead><tr><th style="text-align:left">类型</th><th style="text-align:left">描述</th></tr></thead><tbody><tr><td style="text-align:left"><code>va_list</code></td><td style="text-align:left">用来保存宏 <code>va_arg</code> 与宏 <code>va_end</code> 所需信息</td></tr></tbody></table><table><thead><tr><th style="text-align:left">宏</th><th style="text-align:left">描述</th></tr></thead><tbody><tr><td style="text-align:left"><code>va_start(va_list,省略号的前一个参数)</code></td><td style="text-align:left">使 <code>va_list</code> 指向起始的参数</td></tr><tr><td style="text-align:left"><code>va_arg(va_list,参数类型)</code></td><td style="text-align:left">检索参数并返回</td></tr><tr><td style="text-align:left"><code>va_end(va_list)</code></td><td style="text-align:left">释放 <code>va_list</code> 的内存空间</td></tr><tr><td style="text-align:left"><code>va_copy(va_list, va_list)</code></td><td style="text-align:left">拷贝 <code>va_list</code> 的内容，<code>va_copy(va2, va1)</code> 作用为拷贝 va1到 va2</td></tr></tbody></table><h1 id="如何使用">如何使用</h1><ol><li>定义一个函数，最后一个参数为省略号，省略号前面可以有任意个参数，但至少要有一个</li><li>声明一个 <code>va_list</code> 类型变量用于承载参数列表</li><li>使用 <code>va_start()</code> 初始化 <code>va_list</code></li><li>多次使用 <code>va_arg()</code> 依次获取参数列表里的值，每执行一次就返回一个参数（通过类型自动跳到下一个参数的位置）</li><li>使用宏 <code>va_end()</code> 来回收 <code>va_list</code> 变量</li></ol><p><strong>注意：没有机制可以确定省略号里一共传递了多少个参数，以及他们各自的数据类型（ <code>va_arg()</code> 会一直往后跳，即使已经超出了总参数的个数，它也不知道）</strong></p><p>为了解决这个问题，通常有三种方法</p><ul><li>在省略号前传入一个整型，表示后面参数的总数（总数变量法）</li><li>使用一个特定的标识符来确定参数的结尾，如传递一串 <code>int</code> ，并使用 <code>-1</code> 表示数据结束（标识符法）</li><li>在省略号前传入一个格式化字符串，通过字符串确定参数的数量以及各自的类型（格式化字符串法，类似 <code>scanf()</code> 和 <code>printf()</code> ）</li></ul><h1 id="样例">样例</h1><div class="tabs" id="样例"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#样例-1">总数变量法</button></li><li class="tab"><button type="button" data-href="#样例-2">标识符法</button></li><li class="tab"><button type="button" data-href="#样例-3">格式化字符串法</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="样例-1"><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdarg.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">sum</span><span class="params">(<span class="type">int</span> num, ...)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    va_list <span class="built_in">list</span>; <span class="comment">//定义 va_list 类型变量</span></span><br><span class="line"></span><br><span class="line">    va_start(<span class="built_in">list</span>, num); <span class="comment">//初始化</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= num; i++)</span><br><span class="line">        sum += va_arg(<span class="built_in">list</span>, <span class="type">int</span>); <span class="comment">//依次获取参数</span></span><br><span class="line"></span><br><span class="line">    va_end(<span class="built_in">list</span>); <span class="comment">//回收变量</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// freopen(&quot;input.txt&quot;, &quot;r&quot;, stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;output.txt&quot;, &quot;w&quot;, stdout);</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Sum of 2, 3, 4, 5 = %d\n&quot;</span>, sum(<span class="number">4</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)); <span class="comment">// Sum of 2, 3, 4, 5 = 14</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="样例-2"><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdarg.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">sum</span><span class="params">(<span class="type">int</span> tmp, ...)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    va_list <span class="built_in">list</span>; <span class="comment">//定义 va_list 类型变量</span></span><br><span class="line"></span><br><span class="line">    va_start(<span class="built_in">list</span>, tmp); <span class="comment">//初始化</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = tmp; i != <span class="number">-1</span>; i = va_arg(<span class="built_in">list</span>, <span class="type">int</span>))</span><br><span class="line">        sum += i; <span class="comment">//依次获取参数</span></span><br><span class="line"></span><br><span class="line">    va_end(<span class="built_in">list</span>); <span class="comment">//回收变量</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// freopen(&quot;input.txt&quot;, &quot;r&quot;, stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;output.txt&quot;, &quot;w&quot;, stdout);</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Sum of 2, 3, 4, 5 = %d\n&quot;</span>, sum(<span class="number">4</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">-1</span>)); <span class="comment">// Sum of 2, 3, 4, 5 = 14</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="样例-3"><p><s>不想写</s>，评论区有大佬的话可以写一个</p><button type="button" class="tab-to-top" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div></div><p>参考资料：</p><ul><li><a href="https://www.runoob.com/cprogramming/c-variable-arguments.html">C 可变参数 | 菜鸟教程</a></li><li><a href="https://baike.baidu.com/item/stdarg.h/10239382?fr=aladdin">stdarg.h_百度百科</a></li></ul>]]></content>
       
       
       <categories>
