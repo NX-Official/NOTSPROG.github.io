@@ -1,0 +1,237 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>『算法拾遗』广度优先搜索（1）：初尝 BFS | NX の 博客</title><meta name="keywords" content="BFS"><meta name="author" content="Nick Xu"><meta name="copyright" content="Nick Xu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#0d0d0d"><meta name="description" content="搜索一般来说主要分两种：深度优先搜索（DFS）和广度优先搜索（BFS） 比如说走迷宫，DFS 简单地说就是使用函数递归，先一条路走到头然后再考虑下一条，而 BFS 是从一点出发使用队列并行的往四面八方出发，所有方向是一起走的 用一道例题来理解：hdu 1312 Red and Black 点击查看题目  Problem Description There is a rectangular room">
+<meta property="og:type" content="article">
+<meta property="og:title" content="『算法拾遗』广度优先搜索（1）：初尝 BFS">
+<meta property="og:url" content="https://www.nickxu.top/2022/07/13/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%881%EF%BC%89%EF%BC%9A%E5%88%9D%E5%B0%9D-BFS/index.html">
+<meta property="og:site_name" content="NX の 博客">
+<meta property="og:description" content="搜索一般来说主要分两种：深度优先搜索（DFS）和广度优先搜索（BFS） 比如说走迷宫，DFS 简单地说就是使用函数递归，先一条路走到头然后再考虑下一条，而 BFS 是从一点出发使用队列并行的往四面八方出发，所有方向是一起走的 用一道例题来理解：hdu 1312 Red and Black 点击查看题目  Problem Description There is a rectangular room">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.nickxu.top/static/202202230023069.jpg">
+<meta property="article:published_time" content="2022-07-13T02:44:59.000Z">
+<meta property="article:modified_time" content="2022-07-13T04:34:09.009Z">
+<meta property="article:author" content="Nick Xu">
+<meta property="article:tag" content="BFS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.nickxu.top/static/202202230023069.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://www.nickxu.top/2022/07/13/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%881%EF%BC%89%EF%BC%9A%E5%88%9D%E5%B0%9D-BFS/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":500},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: '/pluginsSrc/flickr-justified-gallery/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '『算法拾遗』广度优先搜索（1）：初尝 BFS',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2022-07-13 12:34:09'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/static/my.css"><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/static/favicon.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">180</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/static/202202230023069.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">NX の 博客</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/todo/"><i class="fa-fw fas fa-list-alt"></i><span> ToDo</span></a></li></ul></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-coffee"></i><span> 更多</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/contact/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></li><li><a class="site-page child" href="/bookmarks/"><i class="fa-fw fas fa-bookmark"></i><span> 网址收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">『算法拾遗』广度优先搜索（1）：初尝 BFS</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-07-13T02:44:59.000Z" title="发表于 2022-07-13 10:44:59">2022-07-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-07-13T04:34:09.009Z" title="更新于 2022-07-13 12:34:09">2022-07-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97/">算法拾遗</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97/%E6%90%9C%E7%B4%A2%E6%8A%80%E6%9C%AF/">搜索技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">678</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="『算法拾遗』广度优先搜索（1）：初尝 BFS"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>搜索一般来说主要分两种：深度优先搜索（DFS）和广度优先搜索（BFS）</p>
+<p>比如说走迷宫，DFS 简单地说就是使用函数递归，先一条路走到头然后再考虑下一条，而 BFS 是从一点出发使用队列并行的往四面八方出发，所有方向是一起走的</p>
+<p>用一道例题来理解：<a target="_blank" rel="noopener" href="http://acm.hdu.edu.cn/showproblem.php?pid=1312">hdu 1312 Red and Black</a></p>
+<details class="toggle" ><summary class="toggle-button" style="">点击查看题目</summary><div class="toggle-content"><ul>
+<li>
+<p>Problem Description</p>
+<p>There is a rectangular room, covered with square tiles. Each tile is colored either red or black. A man is standing on a black tile. From a tile, he can move to one of four adjacent tiles. But he can’t move on red tiles, he can move only on black tiles.</p>
+<p>Write a program to count the number of black tiles which he can reach by repeating the moves described above.</p>
+</li>
+<li>
+<p>Input</p>
+<p>The input consists of multiple data sets. A data set starts with a line containing two positive integers W and H; W and H are the numbers of tiles in the x- and y- directions, respectively. W and H are not more than 20.</p>
+<p>There are H more lines in the data set, each of which includes W characters. Each character represents the color of a tile as follows.</p>
+<p>‘.’ - a black tile<br>
+‘#’ - a red tile<br>
+‘@’ - a man on a black tile(appears exactly once in a data set)</p>
+</li>
+<li>
+<p>Output<br>
+For each data set, your program should output a line which contains the number of tiles he can reach from the initial tile (including itself).</p>
+</li>
+<li>
+<p>Sample Input</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">6 9</span><br><span class="line">....#.</span><br><span class="line">.....#</span><br><span class="line">......</span><br><span class="line">......</span><br><span class="line">......</span><br><span class="line">......</span><br><span class="line">......</span><br><span class="line">#@...#</span><br><span class="line">.#..#.</span><br><span class="line">11 9</span><br><span class="line">.#.........</span><br><span class="line">.#.#######.</span><br><span class="line">.#.#.....#.</span><br><span class="line">.#.#.###.#.</span><br><span class="line">.#.#..@#.#.</span><br><span class="line">.#.#####.#.</span><br><span class="line">.#.......#.</span><br><span class="line">.#########.</span><br><span class="line">...........</span><br><span class="line">11 6</span><br><span class="line">..#..#..#..</span><br><span class="line">..#..#..#..</span><br><span class="line">..#..#..###</span><br><span class="line">..#..#..#@.</span><br><span class="line">..#..#..#..</span><br><span class="line">..#..#..#..</span><br><span class="line">7 7</span><br><span class="line">..#.#..</span><br><span class="line">..#.#..</span><br><span class="line">###.###</span><br><span class="line">...@...</span><br><span class="line">###.###</span><br><span class="line">..#.#..</span><br><span class="line">..#.#..</span><br><span class="line">0 0</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>Sample Output</p>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">45</span><br><span class="line">59</span><br><span class="line">6</span><br><span class="line">13</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</div></details>
+<p>简单地说还是走迷宫，遍历所有可能的位置，然后数格子，大概的算法如下</p>
+<ol>
+<li>将起点入队</li>
+<li>从队中取出一个点</li>
+<li>枚举它能前往的点，把这些点入队</li>
+<li>重复 2~3 步</li>
+</ol>
+<p>这样子就能数出到所有能去往的点</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">128</span>, M = <span class="number">128</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> dir[<span class="number">4</span>][<span class="number">2</span>] = &#123; <span class="comment">// 四方向</span></span><br><span class="line">    &#123;<span class="number">0</span>, <span class="number">1</span>&#125;,</span><br><span class="line">    &#123;<span class="number">1</span>, <span class="number">0</span>&#125;,</span><br><span class="line">    &#123;<span class="number">0</span>, <span class="number">-1</span>&#125;,</span><br><span class="line">    &#123;<span class="number">-1</span>, <span class="number">0</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">bool</span> Map[N][M];</span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">point</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> x, y;</span><br><span class="line">&#125; start;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">bfs</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    queue&lt;point&gt; q;</span><br><span class="line">    q.<span class="built_in">push</span>(start); <span class="comment">// q</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">while</span> (!q.<span class="built_in">empty</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> size = q.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; size; i++) <span class="comment">// 一批一批地处理，每一批都是步数相同的</span></span><br><span class="line">        &#123;</span><br><span class="line">            point now = q.<span class="built_in">front</span>();</span><br><span class="line">            q.<span class="built_in">pop</span>();</span><br><span class="line">            ans++;</span><br><span class="line">            Map[now.x][now.y] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="number">4</span>; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="type">int</span> Nx = now.x + dir[j][<span class="number">0</span>];</span><br><span class="line">                <span class="type">int</span> Ny = now.y + dir[j][<span class="number">1</span>];</span><br><span class="line">                <span class="keyword">if</span> (Nx &lt; <span class="number">0</span> || Nx &gt;= n || Ny &lt; <span class="number">0</span> || Ny &gt;= m || !Map[Nx][Ny])</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                Map[Nx][Ny] = <span class="number">0</span>;</span><br><span class="line">                q.<span class="built_in">push</span>(&#123;Nx, Ny&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// freopen(&quot;input.txt&quot;, &quot;r&quot;, stdin);</span></span><br><span class="line">    <span class="comment">// freopen(&quot;output.txt&quot;, &quot;w&quot;, stdout);</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (cin &gt;&gt; m &gt;&gt; n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">0</span> &amp;&amp; m == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; m; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="type">char</span> tmp = <span class="built_in">getchar</span>();</span><br><span class="line">                <span class="keyword">while</span> (tmp != <span class="string">&#x27;.&#x27;</span> &amp;&amp; tmp != <span class="string">&#x27;#&#x27;</span> &amp;&amp; tmp != <span class="string">&#x27;@&#x27;</span>)</span><br><span class="line">                    tmp = <span class="built_in">getchar</span>();</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (tmp == <span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">                    Map[i][j] = <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (tmp == <span class="string">&#x27;#&#x27;</span>)</span><br><span class="line">                    Map[i][j] = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (tmp == <span class="string">&#x27;@&#x27;</span>)</span><br><span class="line">                    start.x = i, start.y = j;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        cout &lt;&lt; <span class="built_in">bfs</span>() &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/BFS/">BFS</a></div><div class="post_share"></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/static/favicon.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Nick Xu</div><div class="author-info__description">折腾就是快乐</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">180</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">32</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">28</div></a></div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/07/13/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%884%EF%BC%89%EF%BC%9A%E5%B9%BF%E6%90%9C%E7%9A%84%E4%BC%98%E5%8C%96%E6%8A%80%E5%B7%A7/" title="『算法拾遗』广度优先搜索（4）：广搜的优化技巧">『算法拾遗』广度优先搜索（4）：广搜的优化技巧</a><time datetime="2022-07-13T02:50:58.000Z" title="发表于 2022-07-13 10:50:58">2022-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/07/13/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%883%EF%BC%89%EF%BC%9ABFS-%E4%B8%8E-A/" title="『算法拾遗』广度优先搜索（3）：BFS 与 A*">『算法拾遗』广度优先搜索（3）：BFS 与 A*</a><time datetime="2022-07-13T02:50:19.000Z" title="发表于 2022-07-13 10:50:19">2022-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/07/13/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%882%EF%BC%89%EF%BC%9A%E7%8A%B6%E6%80%81%E5%9B%BE%E6%90%9C%E7%B4%A2/" title="『算法拾遗』广度优先搜索（2）：状态图搜索">『算法拾遗』广度优先搜索（2）：状态图搜索</a><time datetime="2022-07-13T02:48:49.000Z" title="发表于 2022-07-13 10:48:49">2022-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/07/13/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%EF%BC%881%EF%BC%89%EF%BC%9A%E5%88%9D%E5%B0%9D-BFS/" title="『算法拾遗』广度优先搜索（1）：初尝 BFS">『算法拾遗』广度优先搜索（1）：初尝 BFS</a><time datetime="2022-07-13T02:44:59.000Z" title="发表于 2022-07-13 10:44:59">2022-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2022/07/10/%E3%80%8E%E7%AE%97%E6%B3%95%E6%8B%BE%E9%81%97%E3%80%8F%E6%8E%92%E5%88%97%E4%B8%8E%E7%BB%84%E5%90%88/" title="『算法拾遗』排列与组合">『算法拾遗』排列与组合</a><time datetime="2022-07-10T03:12:17.000Z" title="发表于 2022-07-10 11:12:17">2022-07-10</time></div></div></div></div></div></div></main><footer id="footer" style="background: #0d0d0d"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Nick Xu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="/pluginsSrc/katex/dist/katex.min.css"><script src="/pluginsSrc/katex/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="/pluginsSrc/katex/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-notsprog.vercel.app/',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('/pluginsSrc/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div></div></body></html>
